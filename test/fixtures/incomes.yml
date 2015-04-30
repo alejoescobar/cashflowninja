@@ -1,0 +1,38 @@
+# == Schema Information
+#
+# Table name: incomes
+#
+#  id          :integer          not null, primary key
+#  amount      :integer
+#  description :text
+#  active      :boolean
+#  date        :date
+#  company_id  :integer
+#  project_id  :integer
+#  category_id :integer
+#  account_id  :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1
+  description: MyText
+  active: false
+  date: 2015-04-30
+  company_id: 
+  project_id: 
+  category_id: 
+  account_id: 
+
+two:
+  amount: 1
+  description: MyText
+  active: false
+  date: 2015-04-30
+  company_id: 
+  project_id: 
+  category_id: 
+  account_id: 
