@@ -11,4 +11,11 @@
 
 class Company < ActiveRecord::Base
   belongs_to :user
+  has_many :accounts
+  has_many :categories
+  has_many :incomes
+  has_many :expenses
+  has_many :projects
+  has_many :project_expenses, through: :projects, source: :expenses
+  has_many :project_incomes, through: :projects, source: :incomes
 end
