@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
+  get 'incomes/index'
+
+  get 'incomes/show'
+
+  get 'incomes/new'
+
   devise_for :users
+
+  resources :incomes
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
