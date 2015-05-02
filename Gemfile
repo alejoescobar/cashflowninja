@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'ice_cube', '~> 0.12.1'
+
+gem 'recurrence', '~> 1.3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

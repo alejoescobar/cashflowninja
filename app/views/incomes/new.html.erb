@@ -1,0 +1,21 @@
+<%= form_for @income do |f| %>
+  <p>
+    <%= f.label :amount %> <br>
+    <%= f.number_field :amount %>
+  </p>
+  <p>
+    <%= f.label :description %> <br>
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :date %> <br>
+    <%= f.date_select :date, default: Time.now %>
+  </p>
+  <p>
+    <%= f.label :recurrence %> <br>
+    <%= f.select :recurrence, options_for_select(Income.recurrences.keys) %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

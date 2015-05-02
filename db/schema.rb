@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430224712) do
+ActiveRecord::Schema.define(version: 20150502154440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20150430224712) do
     t.integer  "account_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "recurrence"
   end
 
   add_index "incomes", ["account_id"], name: "index_incomes_on_account_id", using: :btree
@@ -89,6 +90,15 @@ ActiveRecord::Schema.define(version: 20150430224712) do
   end
 
   add_index "projects", ["company_id"], name: "index_projects_on_company_id", using: :btree
+
+  create_table "recurrent_incomes", force: :cascade do |t|
+    t.string   "recurrent_hash"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "income_id"
+  end
+
+  add_index "recurrent_incomes", ["income_id"], name: "index_recurrent_incomes_on_income_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -121,4 +131,5 @@ ActiveRecord::Schema.define(version: 20150430224712) do
   add_foreign_key "incomes", "companies"
   add_foreign_key "incomes", "projects"
   add_foreign_key "projects", "companies"
+  add_foreign_key "recurrent_incomes", "incomes"
 end
