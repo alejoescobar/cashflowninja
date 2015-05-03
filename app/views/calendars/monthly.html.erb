@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Calendars#monthly</h1>
+  <p>Find me in app/views/calendars/monthly.html.erb</p>
+    <h2>
+      <%= link_to "<", date: @date.prev_month %>
+      <%= link_to ">", date: @date.next_month %>
+    </h2>
+
+
+  <table class="table">
+    <tr>
+      <td><%= @date.strftime("%b %Y") %> - <%= (@date + 7.months).strftime("%b %Y") %></td>
+      <% months_header.each do |month| %>
+        <th><%= month.strftime("%B") %></th>
+      <% end %>
+    </tr>
+    <tr>
+      <td>Total income</td>
+      <% total_income.each do |amount| %>
+        <td>
+          <%= amount %>
+        </td>
+      <% end %>
+    </tr>
+  </table>
+
+</div>

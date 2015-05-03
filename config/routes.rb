@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'calendars/monthly'
+
   get 'incomes/index'
 
   get 'incomes/show'

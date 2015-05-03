@@ -21,6 +21,7 @@ class Income < ActiveRecord::Base
   belongs_to :project
   belongs_to :category
   belongs_to :account
+  has_one :recurrent_income
   after_create :create_recurrency
 
   enum recurrence: [:daily, :weekly, :monthly, :yearly]
