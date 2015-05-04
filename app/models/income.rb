@@ -14,6 +14,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  recurrence  :integer
+#  name        :string
 #
 
 class Income < ActiveRecord::Base
@@ -33,7 +34,7 @@ class Income < ActiveRecord::Base
     case self.recurrence
       when "daily"
         puts "You chose daily"
-        RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :day, income: {amount: self.amount}), starts: self.date, income_id: self.id)
+        RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :day, income: {amount: self.amount}), income_id: self.id)
       when "weekly"
         puts "You chose weekly"
         RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :week, on: self.date.wday,

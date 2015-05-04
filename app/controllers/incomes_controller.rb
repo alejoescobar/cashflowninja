@@ -11,8 +11,13 @@ class IncomesController < ApplicationController
   end
 
   def create
+    test = params[:category]
+
     @income = Income.new(income_params)
     @income.save
+    puts "*************************"
+    puts @income.category_id
+    puts "*************************"
     redirect_to @income
   end
   private

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504165418) do
+ActiveRecord::Schema.define(version: 20150504204635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150504165418) do
     t.integer  "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "type"
   end
 
   add_index "categories", ["company_id"], name: "index_categories_on_company_id", using: :btree
@@ -93,6 +94,15 @@ ActiveRecord::Schema.define(version: 20150504165418) do
 
   add_index "projects", ["company_id"], name: "index_projects_on_company_id", using: :btree
 
+  create_table "recurrent_expenses", force: :cascade do |t|
+    t.string   "recurrent_hash"
+    t.integer  "expense_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "recurrent_expenses", ["expense_id"], name: "index_recurrent_expenses_on_expense_id", using: :btree
+
   create_table "recurrent_incomes", force: :cascade do |t|
     t.string   "recurrent_hash"
     t.datetime "created_at",     null: false
@@ -133,5 +143,6 @@ ActiveRecord::Schema.define(version: 20150504165418) do
   add_foreign_key "incomes", "companies"
   add_foreign_key "incomes", "projects"
   add_foreign_key "projects", "companies"
+  add_foreign_key "recurrent_expenses", "expenses"
   add_foreign_key "recurrent_incomes", "incomes"
 end

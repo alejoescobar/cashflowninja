@@ -11,6 +11,7 @@
 
 class Category < ActiveRecord::Base
   belongs_to :company
+  belongs_to :categorizable, polymorphic: true
   has_many :incomes
   has_many :expenses
 end

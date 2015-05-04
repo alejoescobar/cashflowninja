@@ -13,6 +13,7 @@
 #  account_id  :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  name        :string
 #
 
 class Expense < ActiveRecord::Base
@@ -20,6 +21,7 @@ class Expense < ActiveRecord::Base
   belongs_to :project
   belongs_to :category
   belongs_to :account
+  has_one :recurrent_expense
 
   after_create :create_recurrency
 

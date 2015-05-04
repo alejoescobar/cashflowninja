@@ -34,7 +34,7 @@ module CalendarsHelper
       @recurrent_expenses.each do |recurrent|
         recurrent.recurrent_hash.each do |date|
           if month.strftime("%B %Y") == date.strftime("%B %Y")
-            @total_income += recurrent.recurrent_hash.options[:income][:amount]
+            @total_expense += recurrent.recurrent_hash.options[:expense][:amount]
           end
         end
       end
