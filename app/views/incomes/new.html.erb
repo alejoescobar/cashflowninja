@@ -15,6 +15,9 @@
     <%= f.collection_select( :category_id, Category.all, :id, :name) %>
   </p>
   <p>
+    <%= f.collection_select( :project_id, Project.all, :id, :name) %>
+  </p>
+  <p>
     <%= f.label :recurrence %> <br>
     <%= f.select :recurrence, options_for_select(Income.recurrences.keys) %>
   </p>

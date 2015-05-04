@@ -8,12 +8,14 @@
 
 
   <table class="table">
+    <% @months = months_header %>
     <tr>
       <td><%= @date.strftime("%b %Y") %> - <%= (@date + 7.months).strftime("%b %Y") %></td>
-      <% months_header.each do |month| %>
+      <% @months.each do |month| %>
         <th><%= month.strftime("%B") %></th>
       <% end %>
     </tr>
+
     <tr>
       <td>Total income</td>
       <% total_income.each do |amount| %>
@@ -22,6 +24,26 @@
         </td>
       <% end %>
     </tr>
+
+    <% @categories.each do |category| %>
+      <% if category.incomes.count > 0 %>
+        <tr>
+          <td><%= category.name %></td>
+          <% category.incomes.each do |income| %>
+            <% @months.each do |month| %>
+              <% income.recurrent_income.recurrent_hash.each do |date| %>
+                <% puts month.strftime("%b %Y") %>
+                <% if date.strftime("%b %Y") == month.strftime("%b %Y") %>
+                  <% @category_total += income.recurrent_income.recurrent_hash.options[:income][:amount] %>
+                <% end %>
+              <% end %>
+            <td><%= @category_total %></td>
+            <% @category_total = 0 %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
   </table>
 
 </div>
