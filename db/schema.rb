@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20150504204635) do
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.integer  "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "transaction_type"
   end
 
   add_index "categories", ["company_id"], name: "index_categories_on_company_id", using: :btree

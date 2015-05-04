@@ -15,4 +15,6 @@ class Category < ActiveRecord::Base
   belongs_to :categorizable, polymorphic: true
   has_many :incomes
   has_many :expenses
+
+  enum type: [:income, :expense]
 end
