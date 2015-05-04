@@ -2,12 +2,12 @@
 #
 # Table name: categories
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  company_id :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  type       :integer
+#  id               :integer          not null, primary key
+#  name             :string
+#  company_id       :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  transaction_type :integer
 #
 
 class Category < ActiveRecord::Base
@@ -16,5 +16,5 @@ class Category < ActiveRecord::Base
   has_many :incomes
   has_many :expenses
 
-  enum type: [:income, :expense]
+  enum transaction_type: [:income, :expense]
 end

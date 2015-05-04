@@ -17,7 +17,7 @@
   </p>
   <p>
     <%= f.label :category %> <br>
-    <%= f.collection_select( :category_id, Category.all, :id, :name) %>
+    <%= f.collection_select( :category_id, Category.all.where(transaction_type: 0), :id, :name) %>
   </p>
   <p>
     <%= f.label :project %> <br>

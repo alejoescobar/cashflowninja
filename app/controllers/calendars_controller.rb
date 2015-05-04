@@ -1,6 +1,7 @@
 class CalendarsController < ApplicationController
   def monthly
-    @income_categories = Category.all.where(type: 0)
+    @income_categories = Category.all.where(transaction_type: 0)
+    @expense_categories = Category.all.where(transaction_type: 1)
     @incomes = Income.all
     @expenses = Expense.all
     @projects = Project.all

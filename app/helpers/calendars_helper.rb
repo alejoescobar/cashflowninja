@@ -38,10 +38,10 @@ module CalendarsHelper
           end
         end
       end
-      @total_income_array.push(@total_income)
-      @total_income = 0
+      @total_expense_array.push(@total_expense)
+      @total_expense = 0
     end
-    @total_income_array
+    @total_expense_array
   end
 
 
