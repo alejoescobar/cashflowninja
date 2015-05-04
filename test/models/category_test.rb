@@ -7,6 +7,7 @@
 #  company_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  type       :integer
 #
 
 require 'test_helper'
