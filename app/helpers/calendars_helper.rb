@@ -13,7 +13,7 @@ module CalendarsHelper
     @total_income = 0
     @total_income_array = []
     @date_array.each do |month|
-      @recurrent_income.each do |recurrent|
+      @recurrent_incomes.each do |recurrent|
         recurrent.recurrent_hash.each do |date|
           if month.strftime("%B %Y") == date.strftime("%B %Y")
             @total_income += recurrent.recurrent_hash.options[:income][:amount]
@@ -27,11 +27,22 @@ module CalendarsHelper
   end
 
 
-  # def categories_income
-  #   content_tag :tr do
-  #     content
-  #   end
-  # end
+  def total_expense
+    @total_expense = 0
+    @total_expense_array = []
+    @date_array.each do |month|
+      @recurrent_expenses.each do |recurrent|
+        recurrent.recurrent_hash.each do |date|
+          if month.strftime("%B %Y") == date.strftime("%B %Y")
+            @total_income += recurrent.recurrent_hash.options[:income][:amount]
+          end
+        end
+      end
+      @total_income_array.push(@total_income)
+      @total_income = 0
+    end
+    @total_income_array
+  end
 
 
 end

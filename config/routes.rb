@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
+
   get 'calendars/monthly'
-
-  get 'incomes/index'
-
-  get 'incomes/show'
-
-  get 'incomes/new'
 
   devise_for :users
 
   resources :incomes
+  resources :expenses
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

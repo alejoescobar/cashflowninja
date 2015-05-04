@@ -7,19 +7,19 @@
     </h2>
 
 
-  <table class="table">
+  <table class="table table-bordered">
     <% @months = months_header %>
     <tr>
-      <td><%= @date.strftime("%b %Y") %> - <%= (@date + 7.months).strftime("%b %Y") %></td>
+      <td><%= @months.first.strftime("%b %Y") %> - <%= @months.last.strftime("%b %Y") %></td>
       <% @months.each do |month| %>
         <th><%= month.strftime("%B") %></th>
       <% end %>
     </tr>
 
     <tr>
-      <td>Total income</td>
+      <td id="total-income"><strong>Total income</strong></td>
       <% total_income.each do |amount| %>
-        <td>
+        <td class="text-right">
           <%= amount %>
         </td>
       <% end %>
@@ -27,23 +27,61 @@
 
     <% @categories.each do |category| %>
       <% if category.incomes.count > 0 %>
-        <tr>
-          <td><%= category.name %></td>
-          <% category.incomes.each do |income| %>
-            <% @months.each do |month| %>
+        <tr id="category">
+          <td><strong><%= category.name %></strong></td>
+          <% @months.each do |month| %>
+            <% category.incomes.each do |income| %>
+              <% puts month %>
               <% income.recurrent_income.recurrent_hash.each do |date| %>
-                <% puts month.strftime("%b %Y") %>
                 <% if date.strftime("%b %Y") == month.strftime("%b %Y") %>
                   <% @category_total += income.recurrent_income.recurrent_hash.options[:income][:amount] %>
                 <% end %>
               <% end %>
-            <td><%= @category_total %></td>
-            <% @category_total = 0 %>
             <% end %>
+            <td class="text-right"><%= @category_total %></td>
+            <% @category_total = 0 %>
           <% end %>
         </tr>
+        <% @projects.each do |project| %>
+          <% if project.incomes.where(category_id: category.id).sum(:amount) > 0 %>
+            <tr id="project">
+              <td><strong>&nbsp;&nbsp;<%= project.name %></strong></td>
+              <% @months.each do |month| %>
+                <% project.incomes.each do |income| %>
+                  <% income.recurrent_income.recurrent_hash.each do |date| %>
+                    <% if (date.strftime("%b %Y") == month.strftime("%b %Y")) && income.category_id == category.id %>
+                      <% @project_total += income.recurrent_income.recurrent_hash.options[:income][:amount] %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                <td class="text-right"><%= @project_total %></td>
+                <% @project_total = 0 %>
+              <% end %>
+            </tr>
+            <% @incomes.each do |income| %>
+              <% if (income.project.id == project.id) && (income.category.id == category.id) %>
+                <tr id="income">
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= income.name %></td>
+                  <% @months.each do |month| %>
+                    <% income.recurrent_income.recurrent_hash.each do |date| %>
+                      <% if (date.strftime("%b %Y") == month.strftime("%b %Y")) && income.category_id == category.id && income.project_id == project.id %>
+                        <% @entry_total += income.recurrent_income.recurrent_hash.options[:income][:amount] %>
+                      <% end %>
+                    <% end %>
+                    <td class="text-right"><%= @entry_total %></td>
+                    <% @entry_total = 0 %>
+                  <% end %>
+                </tr>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
       <% end %>
     <% end %>
+    <tr>
+      <td colspan="9">&nbsp;</td>
+    </tr>
+
   </table>
 
 </div>
