@@ -57,9 +57,6 @@ module CalendarsHelper
       end
       @total_cash_array.push(@initial_cash)
     end
-    puts "************** hello"
-    puts @total_cash_array
-    puts "**************"
     @total_cash_array
   end
 
