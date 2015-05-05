@@ -1,6 +1,7 @@
 <div class="container">
-  <h1>Calendars#monthly</h1>
-  <p>Find me in app/views/calendars/monthly.html.erb</p>
+    <h1>Monthly View</h1>
+
+    <div><%= high_chart("1", @chart)  %></div>
     <h2>
       <%= link_to "<", date: @date.prev_month %>
       <%= link_to ">", date: @date.next_month %>

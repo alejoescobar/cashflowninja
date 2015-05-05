@@ -19,6 +19,8 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'bootstrap_form'
 gem 'font-awesome-sass', '~> 4.3.0'
 
+gem 'lazy_high_charts', '~> 1.5.4'
+
 gem 'annotate'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

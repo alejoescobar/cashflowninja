@@ -11,5 +11,13 @@ class CalendarsController < ApplicationController
     @entry_total = 0
     @project_total = 0
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @date_array = view_context.months_header
+    @chart = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title({ :text=>"Month chart"})
+      f.options[:xAxis][:categories] = @date_array.map { |date| date.strftime("%b %Y") }
+      f.series(:type=> 'column',:name=> 'Income',:data=> view_context.total_income)
+      f.series(:type=> 'column',:name=> 'Expenses',:data=> view_context.total_expense)
+      f.series(:type=> 'spline',:name=> 'Cash On Hand', :data=> view_context.cash_on_hand)
+    end
   end
 end
