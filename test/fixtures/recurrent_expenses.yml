@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: recurrent_expenses
+#
+#  id             :integer          not null, primary key
+#  recurrent_hash :string
+#  expense_id     :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recurrent_hash: MyString
+  expense_id: 
+
+two:
+  recurrent_hash: MyString
+  expense_id: 

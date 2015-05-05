@@ -1,4 +1,6 @@
-<%= form_for @income do |f| %>
+<h1>New Expense</h1>
+
+<%= form_for @expense do |f| %>
   <p>
     <%= f.label :name %> <br>
     <%= f.text_field :name %>
@@ -17,7 +19,7 @@
   </p>
   <p>
     <%= f.label :category %> <br>
-    <%= f.collection_select( :category_id, Category.all.where(transaction_type: 0), :id, :name) %>
+    <%= f.collection_select( :category_id, Category.all.where(transaction_type: 1), :id, :name) %>
   </p>
   <p>
     <%= f.label :project %> <br>
@@ -25,7 +27,7 @@
   </p>
   <p>
     <%= f.label :recurrence %> <br>
-    <%= f.select :recurrence, options_for_select(Income.recurrences.keys) %>
+    <%= f.select :recurrence, options_for_select(Expense.recurrences.keys) %>
   </p>
   <p>
     <%= f.submit %>
