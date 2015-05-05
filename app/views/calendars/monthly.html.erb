@@ -17,6 +17,15 @@
     </tr>
 
     <tr>
+      <td>Cash on Hand (Beginning of Month)</td>
+      <% cash_on_hand.each do |amount| %>
+        <td class="text-right">
+          <%= amount %>
+        </td>
+      <% end %>
+    </tr>
+
+    <tr>
       <td id="total-income"><strong>Total income</strong></td>
       <% total_income.each do |amount| %>
         <td class="text-right">
