@@ -1,11 +1,9 @@
   <h1>Monthly View</h1>
 
-  <div><%= high_chart("1", @chart)  %></div>
   <h2>
     <%= link_to "<", date: @date.prev_month %>
     <%= link_to ">", date: @date.next_month %>
   </h2>
-
 
 <table class="table table-bordered">
   <% @months = months_header %>

@@ -9,10 +9,6 @@ class ReportsController < ApplicationController
       @start_date = Date.today
       @end_date = Date.today + 1.year
     end
-    puts "----------------------------------------"
-    # puts start_date
-    # puts end_date
-    puts "----------------------------------------"
     @date_array = view_context.selected_months(@start_date, @end_date)
     @total_income_array = view_context.report_total_income
     @total_expense_array = view_context.report_total_expense
@@ -25,4 +21,57 @@ class ReportsController < ApplicationController
       f.series(:type=> 'spline',:name=> 'Cash On Hand', :data=> view_context.cash_on_hand)
     end
   end
+
+  def categories
+    @income_categories = Category.all.where(transaction_type: 0)
+    @expense_categories = Category.all.where(transaction_type: 1)
+    @start_date = Date.today
+    @end_date = Date.today + 1.year
+    @date_array = view_context.selected_months(@start_date, @end_date)
+    @income_chart = LazyHighCharts::HighChart.new('pie') do |f|
+          f.chart({:defaultSeriesType=>"pie" , :margin=> [50, 50, 50, 50]} )
+          series = {
+                   :type=> 'pie',
+                   :name=> 'Categories distribution',
+                   :data=> view_context.income_categories_distribution
+          }
+          f.series(series)
+          f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'})
+          f.plot_options(:pie=>{
+            :allowPointSelect=>true,
+            :cursor=>"pointer" ,
+            :showInLegend => true,
+            :dataLabels=>{
+              :enabled=>false,
+              :color=>"black",
+              :style=>{
+                :font=>"13px Helvetica, Verdana, sans-serif"
+              }
+            }
+          })
+    end
+    @expense_chart = LazyHighCharts::HighChart.new('pie') do |f|
+          f.chart({:defaultSeriesType=>"pie" , :margin=> [50, 50, 50, 50]} )
+          series = {
+                   :type=> 'pie',
+                   :name=> 'Categories distribution',
+                   :data=> view_context.expense_categories_distribution
+          }
+          f.series(series)
+          f.legend(:layout=> 'vertical',:style=> {:left=> 'auto', :bottom=> 'auto',:right=> '50px',:top=> '100px'})
+          f.plot_options(:pie=>{
+            :allowPointSelect=>true,
+            :cursor=>"pointer" ,
+            :showInLegend => true,
+            :dataLabels=>{
+              :enabled=>false,
+              :color=>"black",
+              :style=>{
+                :font=>"13px Helvetica, Verdana, sans-serif"
+              }
+            }
+          })
+    end
+  end
+
 end

@@ -26,7 +26,7 @@ class Income < ActiveRecord::Base
   after_initialize :defaults
   after_create :create_recurrency
 
-  enum recurrence: [:daily, :weekly, :monthly, :yearly]
+  enum recurrence: [:never, :daily, :weekly, :monthly, :yearly]
 
   def defaults
     self.account_id ||= 1
@@ -46,12 +46,12 @@ class Income < ActiveRecord::Base
         starts: self.date, income: {amount: self.amount}), income_id: self.id)
       when "monthly"
         puts "You chose monthly"
-        RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :month, on: self.date.day,starts: self.date, income: {amount: self.amount}), income_id: self.id)
+        RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :month, on: self.date.day,starts: self.date, until: self.date, income: {amount: self.amount}), income_id: self.id)
       when "yearly"
         puts "You chose yearly"
         RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :year, on: [self.date.month, self.date.day], starts: self.date, income: {amount: self.amount}), income_id: self.id)
       else
-        puts "Not a valid input"
+        RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :month, on: self.date.day,starts: self.date, until: self.date, income: {amount: self.amount}), income_id: self.id)
     end
   end
 
