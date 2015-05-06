@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'reports/index'
+
   get 'calendars/monthly'
 
   devise_for :users

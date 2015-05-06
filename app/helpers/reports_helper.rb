@@ -1,37 +1,14 @@
-module CalendarsHelper
-  def months_header
+module ReportsHelper
+  def selected_months(start_date, end_date)
     @date_array = []
-    8.times do |month|
-      @date_array.push(@date)
-      @date = @date.next_month
+    months_number = (end_date.year * 12 + end_date.month) - (start_date.year * 12 + start_date.month)
+    months_number.times do |x|
+      if start_date < end_date
+        @date_array.push(start_date)
+        start_date = start_date.next_month
+      end
     end
-    puts @date_array.count
     @date_array
-  end
-
-  def initial_cash
-    counter = 0
-    @initial_cash = 0
-    @account = Account.first
-    @account.incomes.each do |income|
-      income.recurrent_income.recurrent_hash.each do |date|
-        if date <= @date_array.first.prev_month
-          counter += 1
-        end
-      end
-      @initial_cash += counter * income.recurrent_income.recurrent_hash.options[:income][:amount]
-      counter = 0
-    end
-    @account.expenses.each do |expense|
-      expense.recurrent_expense.recurrent_hash.each do |date|
-        if date <= @date_array.first.prev_month
-          counter += 1
-        end
-      end
-      @initial_cash -= counter * expense.recurrent_expense.recurrent_hash.options[:expense][:amount]
-      counter = 0
-    end
-    @initial_cash
   end
 
   def cash_on_hand
@@ -60,7 +37,7 @@ module CalendarsHelper
     @total_cash_array
   end
 
-  def total_income
+  def report_total_income
     @total_income = 0
     @total_income_array = []
     @date_array.each do |month|
@@ -77,8 +54,7 @@ module CalendarsHelper
     @total_income_array
   end
 
-
-  def total_expense
+  def report_total_expense
     @total_expense = 0
     @total_expense_array = []
     @date_array.each do |month|
@@ -94,4 +70,5 @@ module CalendarsHelper
     end
     @total_expense_array
   end
+
 end
