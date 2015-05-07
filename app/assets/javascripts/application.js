@@ -18,3 +18,4 @@
 //= require highcharts/highstock
 //= require turbolinks
 //= require_tree .
+

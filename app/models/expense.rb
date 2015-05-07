@@ -27,7 +27,7 @@ class Expense < ActiveRecord::Base
 
   after_create :create_recurrency
 
-  enum recurrence: [:daily, :weekly, :monthly, :yearly]
+  enum recurrence: [:never, :daily, :weekly, :monthly, :yearly]
 
   def defaults
     self.account_id ||= 1

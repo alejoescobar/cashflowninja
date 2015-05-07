@@ -39,17 +39,34 @@ class Income < ActiveRecord::Base
     case self.recurrence
       when "daily"
         puts "You chose daily"
-        RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :day, income: {amount: self.amount}), income_id: self.id)
+        if self.end_date == self.date
+          RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :day, income: {amount: self.amount}), income_id: self.id)
+       else
+          RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :day, starts: self.date, until: self.end_date, income: {amount: self.amount}), income_id: self.id)
+       end
       when "weekly"
         puts "You chose weekly"
-        RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :week, on: self.date.wday,
-        starts: self.date, income: {amount: self.amount}), income_id: self.id)
+        if self.end_date == self.date
+          RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :week, on: self.date.wday,
+          starts: self.date, income: {amount: self.amount}), income_id: self.id)
+        else
+          RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :week, on: self.date.wday,
+          starts: self.date, until: self.end_date, income: {amount: self.amount}), income_id: self.id)
+        end
       when "monthly"
         puts "You chose monthly"
-        RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :month, on: self.date.day,starts: self.date, until: self.date, income: {amount: self.amount}), income_id: self.id)
+        if self.end_date == self.date
+          RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :month, on: self.date.day,starts: self.date, income: {amount: self.amount}), income_id: self.id)
+        else
+          RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :month, on: self.date.day,starts: self.date, until: self.end_date, income: {amount: self.amount}), income_id: self.id)
+        end
       when "yearly"
         puts "You chose yearly"
-        RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :year, on: [self.date.month, self.date.day], starts: self.date, income: {amount: self.amount}), income_id: self.id)
+        if self.end_date == self.date
+          RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :year, on: [self.date.month, self.date.day], starts: self.date, income: {amount: self.amount}), income_id: self.id)
+        else
+          RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :year, on: [self.date.month, self.date.day], starts: self.date, until:self.end_date, income: {amount: self.amount}), income_id: self.id)
+        end
       else
         RecurrentIncome.create(recurrent_hash: Recurrence.new(every: :month, on: self.date.day,starts: self.date, until: self.date, income: {amount: self.amount}), income_id: self.id)
     end
