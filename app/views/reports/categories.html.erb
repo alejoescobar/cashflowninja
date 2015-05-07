@@ -1,4 +1,12 @@
 <h1>Categories</h1>
+<%= form_tag("/reports/categories", method: "get") do |f| %>
+  <p>
+    <%= select_date @start_date, prefix: :start_date %> -
+    <%= select_date @end_date, prefix: :end_date %> |
+    <%= submit_tag "Change", :class => "btn btn-outlined btn-black" %>
+  </p>
+<% end %>
+<h4><%= @start_date.strftime("%B %d, %Y") %> - <%= @end_date.strftime("%B %d, %Y") %></h4>
 <hr>
 
 <h1>Income</h1>

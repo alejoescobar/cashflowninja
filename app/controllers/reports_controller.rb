@@ -25,8 +25,13 @@ class ReportsController < ApplicationController
   def categories
     @income_categories = Category.all.where(transaction_type: 0)
     @expense_categories = Category.all.where(transaction_type: 1)
-    @start_date = Date.today
-    @end_date = Date.today + 1.year
+    if params[:start_date]
+      @start_date = Date.civil(params[:start_date][:year].to_i, params[:start_date][:month].to_i, params[:start_date][:day].to_i)
+      @end_date = Date.civil(params[:end_date][:year].to_i, params[:end_date][:month].to_i, params[:end_date][:day].to_i)
+    else
+      @start_date = Date.today
+      @end_date = Date.today + 1.year
+    end
     @date_array = view_context.selected_months(@start_date, @end_date)
     @income_chart = LazyHighCharts::HighChart.new('pie') do |f|
           f.chart({:defaultSeriesType=>"pie" , :margin=> [50, 50, 50, 50]} )
