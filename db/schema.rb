@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504221312) do
+ActiveRecord::Schema.define(version: 20150506205652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20150504221312) do
     t.datetime "updated_at",  null: false
     t.string   "name"
     t.integer  "recurrence"
+    t.date     "end_date"
   end
 
   add_index "expenses", ["account_id"], name: "index_expenses_on_account_id", using: :btree
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150504221312) do
     t.datetime "updated_at",  null: false
     t.integer  "recurrence"
     t.string   "name"
+    t.date     "end_date"
   end
 
   add_index "incomes", ["account_id"], name: "index_incomes_on_account_id", using: :btree

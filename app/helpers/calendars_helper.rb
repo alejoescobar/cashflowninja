@@ -94,8 +94,4 @@ module CalendarsHelper
     end
     @total_expense_array
   end
-
-  def test
-    "********************** hello world ****************************"
-  end
 end
