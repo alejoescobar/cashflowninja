@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  // $("#expense_recurrence").val("never")
+  $("#expense_recurrence").val("never")
   var endDateSelector = function(form, nextForm, condition) {
     $(form).change(function(){
       console.log($(this).val())

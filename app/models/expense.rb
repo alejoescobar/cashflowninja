@@ -40,17 +40,34 @@ class Expense < ActiveRecord::Base
     case self.recurrence
       when "daily"
         puts "You chose daily"
-        RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :day, expense: {amount: self.amount}), starts: self.date, expense_id: self.id)
+        if self.date == self.end_date
+          RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :day, expense: {amount: self.amount}), starts: self.date, expense_id: self.id)
+        else
+          RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :day, expense: {amount: self.amount}), starts: self.date, until: self.end_date, expense_id: self.id)
+        end
       when "weekly"
         puts "You chose weekly"
-        RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :week, on: self.date.wday,
-        starts: self.date, expense: {amount: self.amount}), expense_id: self.id)
+        if self.date == self.end_date
+          RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :week, on: self.date.wday,
+          starts: self.date, expense: {amount: self.amount}), expense_id: self.id)
+        else
+          RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :week, on: self.date.wday,
+          starts: self.date, until: self.end_date, expense: {amount: self.amount}), expense_id: self.id)
+        end
       when "monthly"
         puts "You chose monthly"
-        RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :month, on: self.date.day,starts: self.date, expense: {amount: self.amount}), expense_id: self.id)
+        if self.date == self.end_date
+          RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :month, on: self.date.day,starts: self.date, expense: {amount: self.amount}), expense_id: self.id)
+        else
+          RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :month, on: self.date.day,starts: self.date, until: self.end_date, expense: {amount: self.amount}), expense_id: self.id)
+        end
       when "yearly"
         puts "You chose yearly"
-        RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :year, on: [self.date.month, self.date.day], starts: self.date, expense: {amount: self.amount}), expense_id: self.id)
+        if self.date == self.end_date
+          RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :year, on: [self.date.month, self.date.day], starts: self.date, expense: {amount: self.amount}), expense_id: self.id)
+        else
+          RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :year, on: [self.date.month, self.date.day], starts: self.date, until: self.end_date, expense: {amount: self.amount}), expense_id: self.id)
+        end
       else
         puts "Not a valid input"
     end
