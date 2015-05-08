@@ -22,16 +22,11 @@ class Expense < ActiveRecord::Base
   belongs_to :project
   belongs_to :category
   belongs_to :account
-  after_initialize :defaults
   has_one :recurrent_expense
 
   after_create :create_recurrency
 
   enum recurrence: [:never, :daily, :weekly, :monthly, :yearly]
-
-  def defaults
-    self.account_id ||= 1
-  end
 
   def create_recurrency
     puts "I'm here!!!!!!!"
@@ -41,7 +36,7 @@ class Expense < ActiveRecord::Base
       when "daily"
         puts "You chose daily"
         if self.date == self.end_date
-          RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :day, expense: {amount: self.amount}), starts: self.date, expense_id: self.id)
+          RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :day, expense: {amount: self.amount}), expense_id: self.id)
         else
           RecurrentExpense.create(recurrent_hash: Recurrence.new(every: :day, expense: {amount: self.amount}), starts: self.date, until: self.end_date, expense_id: self.id)
         end

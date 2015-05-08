@@ -1,0 +1,69 @@
+<div class="modal-header">
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+   <h3 id="myModalLabel">New Expense</h3>
+ </div>
+ <div class="modal-body">
+
+   <%= bootstrap_form_for @expense do |f| %>
+     <p>
+       <%= f.text_field :name %>
+     </p>
+     <p>
+       <%= f.number_field :amount %>
+     </p>
+     <p>
+       <%= f.text_area :description %>
+     </p>
+     <p>
+       <%= f.date_select :date, default: Time.now %>
+     </p>
+     <p>
+       <%= f.collection_select( :category_id, Category.all.where(transaction_type: 1), :id, :name) %>
+     </p>
+     <p>
+       <%= f.collection_select( :project_id, Project.all, :id, :name) %>
+     </p>
+     <p>
+       <%= f.select :recurrence, options_for_select(Expense.recurrences.keys) %>
+     </p>
+     <p>
+       <div class="form-group">
+         <select id="end-condition" name="end-condition" class="form-control hidden">
+           <option value="0">Never End</option>
+           <option value="1">End On Date:</option>
+         </select>
+       </div>
+     </p>
+       <div id="end-date-select" class="hidden">
+         <%= f.date_select :end_date, default: Time.now, start_year: 2015 %>
+       </div>
+     <p>
+     <p>
+       <%= f.submit %>
+     </p>
+   <% end %>
+ </div>
+ <script>
+   $(document).ready(function() {
+     $("#expense_recurrence").val("never")
+     var endDateSelector = function(form, nextForm, condition) {
+       $(form).change(function(){
+         console.log($(this).val())
+         if ($(this).val() != condition) {
+           $(nextForm).removeClass("hidden");
+         } else {
+           $(nextForm).addClass("hidden");
+           $("#end-condition").val(0)
+           $("#end-date-select").addClass("hidden");
+         }
+       })
+     }
+
+     endDateSelector("#expense_recurrence", "#end-condition", "never")
+     endDateSelector("#end-condition", "#end-date-select", 0)
+   })
+ </script>
+ <div class="modal-footer">
+   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+   <button class="btn btn-primary">Save changes</button>
+ </div>

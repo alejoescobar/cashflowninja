@@ -14,11 +14,10 @@ class IncomesController < ApplicationController
     test = params[:category]
 
     @income = Income.new(income_params)
+    @income.company = current_user.companies.first
+    @income.account_id = current_user.companies.first.accounts.first.id
     @income.save
-    puts "*************************"
-    puts @income.category_id
-    puts "*************************"
-    redirect_to @income
+    redirect_to :back
   end
   private
 

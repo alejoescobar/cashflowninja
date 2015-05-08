@@ -13,7 +13,7 @@ module ReportsHelper
 
   def cash_on_hand
     initial_cash
-    @account = Account.first
+    @account = current_user.companies.first.accounts.first
     @total_cash_array = []
     @date_array.each do |month|
       @account.incomes.each do |income|

@@ -33,10 +33,10 @@
           <li class="dropdown new-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="glyphicon glyphicon-plus"></i> <strong>New</strong> <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">Something else here</a></li>
+              <li><%= link_to 'Add income', new_income_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#income-modal-window'} %></li>
+              <li><%= link_to 'Add expense', new_expense_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#expense-modal-window'} %></li>
+              <li><%= link_to 'Add project', new_project_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}  %></li>
+              <li><%= link_to 'Add category', new_category_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#category-modal-window'}  %></li>
             </ul>
           </li>
           <li class="dropdown">

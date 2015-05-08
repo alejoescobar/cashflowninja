@@ -23,14 +23,9 @@ class Income < ActiveRecord::Base
   belongs_to :category
   belongs_to :account
   has_one :recurrent_income
-  after_initialize :defaults
   after_create :create_recurrency
 
   enum recurrence: [:never, :daily, :weekly, :monthly, :yearly]
-
-  def defaults
-    self.account_id ||= 1
-  end
 
   def create_recurrency
     puts "I'm here!!!!!!!"

@@ -12,7 +12,7 @@ module CalendarsHelper
   def initial_cash
     counter = 0
     @initial_cash = 0
-    @account = Account.first
+    @account = current_user.companies.first.accounts.first
     @account.incomes.each do |income|
       income.recurrent_income.recurrent_hash.each do |date|
         if date <= @date_array.first.prev_month

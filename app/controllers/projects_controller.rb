@@ -5,13 +5,17 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
     @project = Project.new(project_params)
     @project.company = current_user.companies.first
     @project.save
-    redirect_to @project
+    redirect_to :back
   end
 
   private

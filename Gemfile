@@ -18,6 +18,7 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'bootstrap_form'
 gem 'font-awesome-sass', '~> 4.3.0'
+gem 'bootstrap-modal-rails'
 
 gem 'lazy_high_charts', '~> 1.5.4'
 
