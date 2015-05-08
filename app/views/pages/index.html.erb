@@ -1,2 +1,131 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<body id="page-top">
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <li>
+                        <%= link_to "Sign Up", new_user_registration_path %>
+                    </li>
+                    <li>
+                        <%= link_to "Login", new_user_session_path %>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+
+    <section class="bg-primary" id="about" style="height: 600px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h1 class="section-heading" style="margin-top:20px; font-size: 65px; font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;">Easy cash flow for small business</h1>
+                    <hr class="light" style="margin-top: 20px; margin-bottom: 20px">
+                    <p class="text-faded" style="font-family: Merriweather,'Helvetica Neue',Arial,sans-serif; ">CashFlowNinja has everything you need to get your numbers clear. Whether you're looking to start a new business or hoping to stay in business CashFlowNinja helps both!</p>
+                    <a href="#" class="btn btn-default btn-xl" style="margin-top: 20px; background-color: #215F8B; border: none; padding: 15px 25px; border-radius: 0px; color: white">Get Started!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">At Your Service</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-paper-plane text-primary"></i>
+                        <h3>Ready for use</h3>
+                        <p class="text-muted">Create an account and start adding cashflows in less than a minute.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-bar-chart text-primary" data-wow-delay=".1s"></i>
+                        <h3>Data Visualization</h3>
+                        <p class="text-muted">Visualize your data easily with awesome and clear charts!</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i>
+                        <h3>Export to Excel</h3>
+                        <p class="text-muted">Export to Excel if you want further analysis (coming soon).</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <i class="fa fa-4x fa-heart wow bounceIn text-primary" data-wow-delay=".3s"></i>
+                        <h3>Made with Love</h3>
+                        <p class="text-muted">You have to make your websites with love these days!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <aside class="bg-dark">
+        <div class="container text-center">
+            <div class="call-to-action">
+                <h2>First month is on us!</h2>
+                <a href="#" class="btn btn-default btn-xl wow tada">Start Now!</a>
+            </div>
+        </div>
+    </aside>
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">Let's Get In Touch!</h2>
+                    <hr class="primary">
+                    <p>Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
+                </div>
+                <div class="col-lg-4 col-lg-offset-2 text-center">
+                    <i class="fa fa-phone fa-3x wow bounceIn"></i>
+                    <p>300 4602582</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
+                    <p><a href="mailto:your-email@your-domain.com">alejoescobac@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Plugin JavaScript
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.fittext.js"></script>
+    <script src="js/wow.min.js"></script>
+    -->
+    <!-- Custom Theme JavaScript
+    <script src="js/creative.js"></script>
+    -->
+</body>

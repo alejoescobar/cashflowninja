@@ -71,7 +71,7 @@
           <% @incomes.each do |income| %>
             <% if (income.project.id == project.id) && (income.category.id == category.id) %>
               <tr id="income">
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= income.name %></td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to income.name, income_path(income) %></td>
                 <% @months.each do |month| %>
                   <% income.recurrent_income.recurrent_hash.each do |date| %>
                     <% if (date.strftime("%b %Y") == month.strftime("%b %Y")) && income.category_id == category.id && income.project_id == project.id %>
