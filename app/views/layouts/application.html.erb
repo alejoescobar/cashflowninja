@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cashflowninja</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <title>Cashflowninja</title>
 </head>
 <body>
 
@@ -25,6 +27,7 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
           <li>
             <%= link_to calendars_monthly_path do %>
               <i class="glyphicon glyphicon-stats"></i> Yolo
@@ -46,6 +49,7 @@
               <li><%= link_to "Categories", reports_categories_path %></li>
             </ul>
           </li>
+          <% end %>
           <% if user_signed_in? %>
           <li><a href="#">Signed in as <%= current_user.email %></a></li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
@@ -58,13 +62,7 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-
-<div class="container">
-
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
   <%= yield %>
-</div>
+
 </body>
 </html>
