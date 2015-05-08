@@ -1,15 +1,13 @@
-  <h1>Monthly View</h1>
-  <h2>
+<div class="container">
+  <% @months = months_header %>
+  <h1 class="text-center">Monthly View</h1>
+  <h2 class="text-center">
     <%= link_to "<", date: @date.prev_month %>
+    <%= @months.first.strftime("%b %Y") %> - <%= @months.last.strftime("%b %Y") %>
     <%= link_to ">", date: @date.next_month %>
-    <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
-    <div id="category-modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
-    <div id="income-modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
-    <div id="expense-modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
   </h2>
 
-<table class="table table-bordered table-hover">
-  <% @months = months_header %>
+  <table class="table table-bordered table-hover">
   <tr>
     <td><%= @months.first.strftime("%b %Y") %> - <%= @months.last.strftime("%b %Y") %></td>
     <% @months.each do |month| %>
@@ -27,7 +25,7 @@
   </tr>
 
   <tr>
-    <td id="total-income"><strong>Total income</strong></td>
+    <td id="total-income"><strong>INCOME</strong></td>
     <% total_income.each do |amount| %>
       <td class="text-right">
         <%= amount %>
@@ -93,7 +91,7 @@
   </tr>
 
   <tr>
-    <td id="total-expense"><strong>Total expense</strong></td>
+    <td id="total-expense"><strong>EXPENSE</strong></td>
     <% total_expense.each do |amount| %>
       <td class="text-right">
         <%= amount %>
@@ -155,4 +153,5 @@
     <% end %>
   <% end %>
 
-</table>
+  </table>
+</div>

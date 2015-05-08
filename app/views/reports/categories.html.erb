@@ -1,58 +1,57 @@
-<h1>Categories</h1>
-<%= form_tag("/reports/categories", method: "get") do |f| %>
-  <p>
-    <%= select_date @start_date, prefix: :start_date %> -
-    <%= select_date @end_date, prefix: :end_date %> |
-    <%= submit_tag "Change", :class => "btn btn-outlined btn-black" %>
-  </p>
-<% end %>
-<h4><%= @start_date.strftime("%B %d, %Y") %> - <%= @end_date.strftime("%B %d, %Y") %></h4>
-<hr>
+<div class="container"><h1>Categories</h1>
+  <%= form_tag("/reports/categories", method: "get") do |f| %>
+    <p>
+      <%= select_date @start_date, prefix: :start_date %> -
+      <%= select_date @end_date, prefix: :end_date %> |
+      <%= submit_tag "Change", :class => "btn btn-outlined btn-black" %>
+    </p>
+  <% end %>
+  <hr>
 
-<h1>Income</h1>
-<div class="row">
-  <div class="col-md-6">
-    <%= high_chart("3", @income_chart)  %>
-  </div>
-  <div class="col-md-6">
-    <table class="table table-bordered pie-table">
-      <tr>
-        <th>%</th>
-        <th>Category</th>
-        <th>Total</th>
-      </tr>
-      <% income_categories_distribution.each_with_index do |category, index| %>
+  <h1>Income</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <%= high_chart("3", @income_chart)  %>
+    </div>
+    <div class="col-md-6">
+      <table class="table table-bordered pie-table">
         <tr>
-          <td><%= category[1] %>%</td>
-          <td><%= category[0] %></td>
-          <td><%= @category_view[index] %></td>
+          <th>%</th>
+          <th>Category</th>
+          <th>Total</th>
         </tr>
-      <% end %>
-    </table>
+        <% income_categories_distribution.each_with_index do |category, index| %>
+          <tr>
+            <td><%= category[1] %>%</td>
+            <td><%= category[0] %></td>
+            <td><%= @category_view[index] %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
-</div>
-<hr>
-<h2>Expenses</h2>
-<div class="row">
-  <div class="col-md-6">
-    <%= high_chart("4", @expense_chart)  %>
-  </div>
-  <div class="col-md-6">
-    <table class="table table-bordered pie-table">
-      <tr>
-        <th>%</th>
-        <th>Category</th>
-        <th>Total</th>
-      </tr>
-      <% expense_categories_distribution.each_with_index do |category, index| %>
+  <hr>
+  <h2>Expenses</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <%= high_chart("4", @expense_chart)  %>
+    </div>
+    <div class="col-md-6">
+      <table class="table table-bordered pie-table">
         <tr>
-          <td><%= category[1] %>%</td>
-          <td><%= category[0] %></td>
-          <td><%= @category_view[index] %></td>
+          <th>%</th>
+          <th>Category</th>
+          <th>Total</th>
         </tr>
-      <% end %>
-    </table>
+        <% expense_categories_distribution.each_with_index do |category, index| %>
+          <tr>
+            <td><%= category[1] %>%</td>
+            <td><%= category[0] %></td>
+            <td><%= @category_view[index] %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
-</div>
 
-
+  </div>

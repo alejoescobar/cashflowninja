@@ -30,7 +30,7 @@
           <% if user_signed_in? %>
           <li>
             <%= link_to calendars_monthly_path do %>
-              <i class="glyphicon glyphicon-stats"></i> Yolo
+              <i class="glyphicon glyphicon-stats"></i> Dashboard
             <% end %>
           </li>
           <li class="dropdown new-menu">
@@ -61,6 +61,11 @@
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
+
+  <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+  <div id="category-modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+  <div id="income-modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+  <div id="expense-modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 
   <%= yield %>
 

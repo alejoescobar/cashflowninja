@@ -1,26 +1,28 @@
-<%= form_tag("/reports/index", method: "get") do |f| %>
-  <p>
-    <%= select_date @start_date, prefix: :start_date %> -
-    <%= select_date @end_date, prefix: :end_date %> |
-    <%= submit_tag "Change", :class => "btn btn-outlined btn-black" %>
-  </p>
-<% end %>
-
-<div><%= high_chart("2", @chart)  %></div>
-
-<table class="table table-bordered">
-  <tr>
-    <th>Date</th>
-    <th>Income</th>
-    <th>Expenses</th>
-    <th>Cash on Hand</th>
-  </tr>
-  <% selected_months(@start_date, @end_date).each_with_index do |date, index| %>
-    <tr>
-      <td><%= date.strftime("%B %Y") %></td>
-      <td><%= @total_income_array[index] %></td>
-      <td><%= @total_expense_array[index] %></td>
-      <td><%= @total_cash_array[index] %></td>
-    </tr>
+<div class="container" style="margin-top: 40px">
+  <%= form_tag("/reports/index", method: "get") do |f| %>
+    <p>
+      <%= select_date @start_date, prefix: :start_date %> -
+      <%= select_date @end_date, prefix: :end_date %> |
+      <%= submit_tag "Change", :class => "btn btn-outlined btn-black" %>
+    </p>
   <% end %>
-</table>
+
+  <div><%= high_chart("2", @chart)  %></div>
+
+  <table class="table table-bordered">
+    <tr>
+      <th>Date</th>
+      <th>Income</th>
+      <th>Expenses</th>
+      <th>Cash on Hand</th>
+    </tr>
+    <% selected_months(@start_date, @end_date).each_with_index do |date, index| %>
+      <tr>
+        <td><%= date.strftime("%B %Y") %></td>
+        <td><%= @total_income_array[index] %></td>
+        <td><%= @total_expense_array[index] %></td>
+        <td><%= @total_cash_array[index] %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
