@@ -1,12 +1,20 @@
 class CalendarsController < ApplicationController
+  before_action :authenticate_user!
   def monthly
-    @income_categories = Category.all.where(transaction_type: 0)
-    @expense_categories = Category.all.where(transaction_type: 1)
-    @incomes = Income.all
-    @expenses = Expense.all
-    @projects = Project.all
-    @recurrent_incomes = RecurrentIncome.all
-    @recurrent_expenses = RecurrentExpense.all
+    # @income_categories = Category.all.where(transaction_type: 0)
+    # @expense_categories = Category.all.where(transaction_type: 1)
+    @income_categories = current_user.companies.first.categories.where(transaction_type: 0)
+    @expense_categories = current_user.companies.first.categories.where(transaction_type: 1)
+    # @incomes = Income.all
+    # @expenses = Expense.all
+    @incomes = current_user.companies.first.incomes
+    @expenses = current_user.companies.first.expenses
+    # @projects = Project.all
+    # @recurrent_incomes = RecurrentIncome.all
+    # @recurrent_expenses = RecurrentExpense.all
+    @projects = current_user.companies.first.projects
+    @recurrent_incomes = current_user.companies.first.recurrent_incomes
+    @recurrent_expenses = current_user.companies.first.recurrent_expenses
     @category_total = 0
     @entry_total = 0
     @project_total = 0

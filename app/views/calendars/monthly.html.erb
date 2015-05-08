@@ -1,11 +1,14 @@
   <h1>Monthly View</h1>
-
   <h2>
     <%= link_to "<", date: @date.prev_month %>
     <%= link_to ">", date: @date.next_month %>
+    <div id="modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+    <div id="category-modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+    <div id="income-modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+    <div id="expense-modal-window" class="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
   </h2>
 
-<table class="table table-bordered">
+<table class="table table-bordered table-hover">
   <% @months = months_header %>
   <tr>
     <td><%= @months.first.strftime("%b %Y") %> - <%= @months.last.strftime("%b %Y") %></td>

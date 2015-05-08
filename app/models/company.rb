@@ -18,4 +18,7 @@ class Company < ActiveRecord::Base
   has_many :projects
   has_many :project_expenses, through: :projects, source: :expenses
   has_many :project_incomes, through: :projects, source: :incomes
+  has_many :recurrent_incomes, through: :incomes
+  has_many :recurrent_expenses, through: :expenses
+
 end

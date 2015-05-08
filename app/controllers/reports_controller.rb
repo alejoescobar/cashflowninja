@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
   def index
-    @recurrent_incomes = RecurrentIncome.all
-    @recurrent_expenses = RecurrentExpense.all
+    @recurrent_incomes = current_user.companies.first.recurrent_incomes
+    @recurrent_expenses = current_user.companies.first.recurrent_expenses
     if params[:start_date]
       @start_date = Date.civil(params[:start_date][:year].to_i, params[:start_date][:month].to_i, params[:start_date][:day].to_i)
       @end_date = Date.civil(params[:end_date][:year].to_i, params[:end_date][:month].to_i, params[:end_date][:day].to_i)
@@ -23,8 +23,10 @@ class ReportsController < ApplicationController
   end
 
   def categories
-    @income_categories = Category.all.where(transaction_type: 0)
-    @expense_categories = Category.all.where(transaction_type: 1)
+    # @income_categories = Category.all.where(transaction_type: 0)
+    # @expense_categories = Category.all.where(transaction_type: 1)
+    @income_categories = current_user.companies.first.categories.where(transaction_type: 0)
+    @expense_categories = current_user.companies.first.categories.where(transaction_type: 1)
     if params[:start_date]
       @start_date = Date.civil(params[:start_date][:year].to_i, params[:start_date][:month].to_i, params[:start_date][:day].to_i)
       @end_date = Date.civil(params[:end_date][:year].to_i, params[:end_date][:month].to_i, params[:end_date][:day].to_i)

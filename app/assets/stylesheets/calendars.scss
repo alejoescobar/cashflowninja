@@ -1,4 +1,23 @@
-// Place all the styles related to the calendars controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 
+.table {
+  background: #FFFFFF;
+}
+
+@media screen and (min-width: 768px) {
+    .modal-dialog {
+        left: 50%;
+        right: auto;
+        width: 624px;
+    }
+}
+
+.modal-dialog{
+  position: absolute;
+  left: 50%;
+  //now you must set a margin left under zero - value is a half width your window
+  margin-left: -312px;
+  // this same situation is with height - example
+  height: 500px;
+  top: 50%;
+  margin-top: -250px;
+}

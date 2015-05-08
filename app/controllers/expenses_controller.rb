@@ -12,8 +12,10 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = Expense.new(expense_params)
+    @expense.company = current_user.companies.first
+    @expense.account_id = current_user.companies.first.accounts.first.id
     @expense.save
-    redirect_to @expense
+    redirect_to :back
   end
 
   private

@@ -25,4 +25,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :companies
+  after_create :assign_company
+
+  def assign_company
+    c = Company.create(name: self.company_name, user_id: self.id)
+    Account.create(name: "Primary", company_id: c.id)
+  end
 end
