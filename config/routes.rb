@@ -7,13 +7,15 @@ Rails.application.routes.draw do
 
   devise_for :users
   devise_scope :user do
-    get "/login" => "devise/sessions#new"
-    get "/sign_up" => "devise/registrations#new"
+    # get "/login" => "devise/sessions#new"
+    # get "/sign_up" => "devise/registrations#new"
     authenticated :user do
       root :to => 'calendars#monthly', as: :authenticated_root
     end
   end
 
+  resources :categories
+  resources :projects
   resources :incomes
   resources :expenses
   # The priority is based upon order of creation: first created -> highest priority.

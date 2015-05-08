@@ -1,4 +1,5 @@
 class CalendarsController < ApplicationController
+  before_action :authenticate_user!
   def monthly
     @income_categories = Category.all.where(transaction_type: 0)
     @expense_categories = Category.all.where(transaction_type: 1)
