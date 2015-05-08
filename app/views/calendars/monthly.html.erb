@@ -69,7 +69,7 @@
           <% @incomes.each do |income| %>
             <% if (income.project.id == project.id) && (income.category.id == category.id) %>
               <tr id="income">
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to income.name, income_path(income) %></td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to income.name, edit_income_path(income), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#income-modal-window'} %></td>
                 <% @months.each do |month| %>
                   <% income.recurrent_income.recurrent_hash.each do |date| %>
                     <% if (date.strftime("%b %Y") == month.strftime("%b %Y")) && income.category_id == category.id && income.project_id == project.id %>
@@ -135,7 +135,7 @@
           <% @expenses.each do |expense| %>
             <% if (expense.project.id == project.id) && (expense.category.id == category.id) %>
               <tr id="income">
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= expense.name %></td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to expense.name, edit_expense_path(expense), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#expense-modal-window'} %></td>
                 <% @months.each do |month| %>
                   <% expense.recurrent_expense.recurrent_hash.each do |date| %>
                     <% if (date.strftime("%b %Y") == month.strftime("%b %Y")) && expense.category_id == category.id && expense.project_id == project.id %>

@@ -15,6 +15,7 @@
 #  updated_at  :datetime         not null
 #  name        :string
 #  recurrence  :integer
+#  end_date    :date
 #
 
 class Expense < ActiveRecord::Base

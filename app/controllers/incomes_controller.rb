@@ -10,6 +10,10 @@ class IncomesController < ApplicationController
     @income = Income.new()
   end
 
+  def edit
+    @income = Income.find(params[:id])
+  end
+
   def create
     test = params[:category]
 
@@ -19,6 +23,13 @@ class IncomesController < ApplicationController
     @income.save
     redirect_to :back
   end
+
+  def update
+    @income = Income.find(params[:id])
+    @income.update(income_params)
+    redirect_to :back
+  end
+
   private
 
   def income_params

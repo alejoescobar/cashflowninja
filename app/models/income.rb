@@ -15,6 +15,7 @@
 #  updated_at  :datetime         not null
 #  recurrence  :integer
 #  name        :string
+#  end_date    :date
 #
 
 class Income < ActiveRecord::Base
@@ -28,9 +29,6 @@ class Income < ActiveRecord::Base
   enum recurrence: [:never, :daily, :weekly, :monthly, :yearly]
 
   def create_recurrency
-    puts "I'm here!!!!!!!"
-    puts self.recurrence
-    puts self.recurrence == "daily"
     case self.recurrence
       when "daily"
         puts "You chose daily"

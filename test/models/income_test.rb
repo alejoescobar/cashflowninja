@@ -15,6 +15,7 @@
 #  updated_at  :datetime         not null
 #  recurrence  :integer
 #  name        :string
+#  end_date    :date
 #
 
 require 'test_helper'

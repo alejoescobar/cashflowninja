@@ -10,11 +10,21 @@ class ExpensesController < ApplicationController
     @expense = Expense.new()
   end
 
+  def edit
+    @expense = Expense.find(params[:id])
+  end
+
   def create
     @expense = Expense.new(expense_params)
     @expense.company = current_user.companies.first
     @expense.account_id = current_user.companies.first.accounts.first.id
     @expense.save
+    redirect_to :back
+  end
+
+  def update
+    @expense = Expense.find(params[:id])
+    @expense.update(expense_params)
     redirect_to :back
   end
 
