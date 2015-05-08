@@ -20,3 +20,40 @@
  @import "font-awesome-sprockets";
  @import "font-awesome";
  @import "rails_bootstrap_forms";
+
+ body {
+  background-color: #EEEEEE;
+  padding-top: 50px;
+}
+
+ .navbar-default {
+  background: #303030;
+ }
+
+.new-menu {
+  background: #F05F40 ;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #EBEBEB;
+}
+
+.navbar-default .navbar-nav > .new-menu > a {
+  color: #EBEBEB;
+  transition: background-color 0.5s ease;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: #EBEBEB;
+}
+
+
+.navbar-default .navbar-nav > .new-menu > a:hover, .navbar-default .navbar-nav > .new-menu > a:focus {
+  background: #EE4B28;
+  color: #EBEBEB;
+}
+
+.navbar-default .navbar-nav > .new-menu .open > a, .navbar-default .navbar-nav > .new-menu .open > a:hover, .navbar-default .navbar-nav > .new-menu .open > a:focus {
+  background: #EE4B28;
+  color: #EBEBEB;
+}

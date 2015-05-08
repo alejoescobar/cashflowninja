@@ -5,7 +5,7 @@
     <%= link_to ">", date: @date.next_month %>
   </h2>
 
-<table class="table table-bordered">
+<table class="table table-bordered table-hover">
   <% @months = months_header %>
   <tr>
     <td><%= @months.first.strftime("%b %Y") %> - <%= @months.last.strftime("%b %Y") %></td>

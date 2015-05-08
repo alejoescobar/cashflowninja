@@ -26,7 +26,7 @@ class ReportsController < ApplicationController
     # @income_categories = Category.all.where(transaction_type: 0)
     # @expense_categories = Category.all.where(transaction_type: 1)
     @income_categories = current_user.companies.first.categories.where(transaction_type: 0)
-    @expenese_categories = current_user.companies.first.categories.where(transaction_type: 1)
+    @expense_categories = current_user.companies.first.categories.where(transaction_type: 1)
     if params[:start_date]
       @start_date = Date.civil(params[:start_date][:year].to_i, params[:start_date][:month].to_i, params[:start_date][:day].to_i)
       @end_date = Date.civil(params[:end_date][:year].to_i, params[:end_date][:month].to_i, params[:end_date][:day].to_i)
