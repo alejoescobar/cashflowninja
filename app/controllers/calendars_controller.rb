@@ -18,7 +18,11 @@ class CalendarsController < ApplicationController
     @category_total = 0
     @entry_total = 0
     @project_total = 0
+    puts "****************************"
+    puts @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    puts params[:date]
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    puts "****************************"
     @date_array = view_context.months_header
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title({ :text=>"Month chart"})

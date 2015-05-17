@@ -1,11 +1,14 @@
 module CalendarsHelper
   def months_header
     @date_array = []
+    @monthly_date = @date
     8.times do |month|
-      @date_array.push(@date)
-      @date = @date.next_month
+      @date_array.push(@monthly_date)
+      @monthly_date = @monthly_date.next_month
     end
     puts @date_array.count
+    puts @date
+    p @date_array
     @date_array
   end
 
@@ -31,6 +34,9 @@ module CalendarsHelper
       @initial_cash -= counter * expense.recurrent_expense.recurrent_hash.options[:expense][:amount]
       counter = 0
     end
+    puts "**************************"
+    puts @initial_cash
+    puts "**************************"
     @initial_cash
   end
 
@@ -56,6 +62,9 @@ module CalendarsHelper
         end
       end
       @total_cash_array.push(@initial_cash)
+      puts "---------------------asdfasdfadsfasdfasdfadsfasdfasdf"
+      puts @total_cash_array
+      puts "---------------------asdfasdfasdfasdfasdfasdfasdfasdfsadf"
     end
     @total_cash_array
   end

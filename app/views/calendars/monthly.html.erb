@@ -3,21 +3,20 @@
   <h1 class="text-center">Monthly View</h1>
   <h2 class="text-center">
     <%= link_to "<", date: @date.prev_month %>
-    <%= @months.first.strftime("%b %Y") %> - <%= @months.last.strftime("%b %Y") %>
     <%= link_to ">", date: @date.next_month %>
   </h2>
 
   <table class="table table-bordered table-hover">
   <tr>
-    <td><%= @months.first.strftime("%b %Y") %> - <%= @months.last.strftime("%b %Y") %></td>
-    <% @months.each do |month| %>
+    <td><%= months_header.first.strftime("%b %Y") %> - <%= months_header.last.strftime("%b %Y") %></td>
+    <% months_header.each do |month| %>
       <th><%= month.strftime("%B") %></th>
     <% end %>
   </tr>
 
   <tr>
     <td>Cash on Hand (Beginning of Month)</td>
-    <% cash_on_hand.each do |amount| %>
+    <%= cash_on_hand.each do |amount| %>
       <td class="text-right">
         <%= amount %>
       </td>
